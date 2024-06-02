@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1000
 
     SKIP_AUTH_ROUTES: List[str] = [
-        f"{API_PREFIX}/",
+        f"{API_PREFIX}/version",
         f"{API_PREFIX}/docs",
         f"{API_PREFIX}/openapi.json",
         f"{API_PREFIX}/auth/login",

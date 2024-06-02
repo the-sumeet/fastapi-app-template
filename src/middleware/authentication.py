@@ -22,10 +22,7 @@ def authentication_error_handler(conn: HTTPConnection, exc: AuthenticationError)
 
 
 class AuthMiddleware(AuthenticationBackend):
-    def __init__(
-        self,
-    ):
-        super().__init__()
+
 
     @inject
     async def authenticate(
@@ -39,4 +36,3 @@ class AuthMiddleware(AuthenticationBackend):
             if not user:
                 raise AuthenticationError("Invalid token")
             conn.state.user = user
-        return None

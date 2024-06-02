@@ -33,7 +33,7 @@ class SearchMixin:
         record_id: Optional[str] = None,
         filters: Optional[Dict] = None,
         return_model: Optional[Type[T]] = None,
-    ) -> T | None:
+    ) -> T | Dict | None:
 
         if not record_id and not filters:
             return None
@@ -42,12 +42,11 @@ class SearchMixin:
             filters = {"_id": record_id}
 
         record: Awaitable[Any] = await self.collection.find_one(filters)
+
         if record is None:
             return record
 
-        if return_model:
-            return return_model.parse_obj(record)
-        return self.model.parse_obj(record)
+        return return_model.parse_obj(record) if return_model else record
 
 
 class WriteMixin:
@@ -59,17 +58,17 @@ class WriteMixin:
     ) -> Dict | T:
 
         if isinstance(record, BaseModel):
-            new_record: InsertOneResult = self.collection.insert_one(
+            new_record: InsertOneResult = await self.collection.insert_one(
                 record.model_dump(by_alias=True, exclude={"id"})
             )
         else:
-            new_record = self.collection.insert_one(record)
+            new_record = await self.collection.insert_one(record)
         created_record = await self.collection.find_one({"_id": new_record.inserted_id})
 
         try:
             if return_model:
                 return return_model.parse_obj(created_record)
 
-            return self.model.parse_obj(created_record)
+            return created_record
         except Exception:
             return created_record

@@ -14,15 +14,13 @@ class UserBase(BaseModel):
         arbitrary_types_allowed=True,
     )
 
+
 class User(UserBase):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     model_config = ConfigDict(
         populate_by_name=True,
         arbitrary_types_allowed=True,
     )
-
-class CreateUserDb(UserBase):
-    hashed_password: str
 
 
 # This model will contain fields from database.
