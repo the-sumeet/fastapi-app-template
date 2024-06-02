@@ -5,6 +5,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from src.schema.mongo import PyObjectId
 
 
+# These fields are present in all kinds of user models.
 class UserBase(BaseModel):
     name: str = Field(...)
     email: str = Field(...)
@@ -13,7 +14,6 @@ class UserBase(BaseModel):
         arbitrary_types_allowed=True,
     )
 
-
 class User(UserBase):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     model_config = ConfigDict(
@@ -21,12 +21,12 @@ class User(UserBase):
         arbitrary_types_allowed=True,
     )
 
-
 class CreateUserDb(UserBase):
     hashed_password: str
 
 
-class DbUser(User):
+# This model will contain fields from database.
+class UserDB(User):
     hashed_password: str
 
     model_config = ConfigDict(
@@ -35,11 +35,10 @@ class DbUser(User):
     )
 
 
-class CreateUser(UserBase):
+class UserIn(UserBase):
     password: str
 
     @field_validator("password")
-    @classmethod
     def validate_password(cls, v: str) -> str:
         if v.strip() == "":
             raise ValueError("password must not be empty")

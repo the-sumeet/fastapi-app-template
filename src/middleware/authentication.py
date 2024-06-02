@@ -1,4 +1,5 @@
 import http
+from typing import Optional
 
 from fastapi.responses import JSONResponse
 from kink import inject
@@ -31,11 +32,11 @@ class AuthMiddleware(AuthenticationBackend):
         self, conn: HTTPConnection, user_repo: UserRepository, settings: Settings
     ) -> tuple[AuthCredentials, BaseUser] | None:
         if conn.url.path not in settings.SKIP_AUTH_ROUTES:
-            token = conn.headers.get("Authorization")
+            token: Optional[str] = conn.headers.get("Authorization")
             if token in [None, ""]:
                 raise AuthenticationError("No auth token found")
-            user = await user_repo.get_current_user(token=token)
+            user = await user_repo.get_current_user(token=str(token))
             if not user:
                 raise AuthenticationError("Invalid token")
             conn.state.user = user
-        return
+        return None

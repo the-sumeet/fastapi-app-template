@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic_settings import BaseSettings
 
@@ -6,10 +6,11 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     API_PREFIX: str = "/api/v1"
     APP_NAME: str = "FastAPI App"
-    MONGO_DB_URL: str
+    MONGO_DB_URL: Optional[str] = None
+    MONGO_DB_NAME: Optional[str] = None
 
     # Auth
-    SECRET_KEY: str = "3a8b2782f8ed4db805f3dc0f3c2798a2f5030f29e4e4d3f70cb281c452b1181a"
+    SECRET_KEY: str = "super_secret_key"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1000
 
