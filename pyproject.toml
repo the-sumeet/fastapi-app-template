@@ -23,6 +23,7 @@ uvicorn = "^0.29.0"
 mypy = "^1.10.0"
 types-python-jose = "^3.3.4.20240106"
 types-passlib = "^1.7.7.20240327"
+pytest = "^8.2.1"
 
 [build-system]
 requires = ["poetry-core"]
