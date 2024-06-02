@@ -4,7 +4,7 @@ from jose import jwt
 from kink import inject
 from passlib.context import CryptContext
 
-from app.core.config import Settings
+from src.core.config import Settings
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

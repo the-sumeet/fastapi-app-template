@@ -4,12 +4,12 @@ from jose import JWTError, jwt
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.errors import DuplicateKeyError
 
-from app.core.config import Settings
-from app.repository.mongo import AbstractMongoRepository, SearchMixin, WriteMixin
-from app.schema.auth import EmailPassword
-from app.schema.token import TokenData
-from app.schema.user import CreateUser, CreateUserDb, DbUser, User
-from app.utils.auth import get_password_hash, verify_password
+from src.core.config import Settings
+from src.repository.mongo import AbstractMongoRepository, SearchMixin, WriteMixin
+from src.schema.auth import EmailPassword
+from src.schema.token import TokenData
+from src.schema.user import CreateUser, CreateUserDb, DbUser, User
+from src.utils.auth import get_password_hash, verify_password
 
 
 class UserRepository(AbstractMongoRepository, SearchMixin, WriteMixin):

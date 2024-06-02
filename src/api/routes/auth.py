@@ -3,12 +3,12 @@ from datetime import timedelta
 from fastapi import APIRouter, Body, Depends
 from kink import di
 
-from app.core.config import Settings
-from app.repository.user import UserRepository
-from app.schema.auth import EmailPassword
-from app.schema.token import Token
-from app.schema.user import DbUser
-from app.utils.auth import create_access_token
+from src.core.config import Settings
+from src.repository.user import UserRepository
+from src.schema.auth import EmailPassword
+from src.schema.token import Token
+from src.schema.user import DbUser
+from src.utils.auth import create_access_token
 
 router = APIRouter()
 

@@ -2,7 +2,7 @@ import abc
 from dataclasses import dataclass
 from typing import Any
 
-from app.schema.mongo_search.params import ParamsBase
+from src.schema.mongo_search.params import ParamsBase
 
 
 class SearchFeatureConfig:

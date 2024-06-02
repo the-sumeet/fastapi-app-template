@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Body, Depends, status
 from kink import di
 
-from app.repository.user import UserRepository
-from app.schema.user import CreateUser, User, UserManyResponse
+from src.repository.user import UserRepository
+from src.schema.user import CreateUser, User, UserManyResponse
 
 router = APIRouter()
 

@@ -2,10 +2,10 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends
 
-from api.routes.auth import router as auth_router
-from api.routes.users import router as users_router
-from app.deps import current_user
-from app.schema.user import UserBase
+from src.api.routes.auth import router as auth_router
+from src.api.routes.users import router as users_router
+from src.deps import current_user
+from src.schema.user import UserBase
 
 router = APIRouter()
 

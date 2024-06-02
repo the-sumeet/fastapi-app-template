@@ -5,7 +5,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel
 from pymongo.collection import Collection
 
-from app.schema.response import ManyResponse
+from src.schema.response import ManyResponse
 
 
 class AbstractMongoRepository(abc.ABC):

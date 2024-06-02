@@ -10,8 +10,8 @@ from starlette.authentication import (
 )
 from starlette.requests import HTTPConnection
 
-from app.core.config import Settings
-from app.repository.user import UserRepository
+from src.core.config import Settings
+from src.repository.user import UserRepository
 
 
 def authentication_error_handler(conn: HTTPConnection, exc: AuthenticationError):
