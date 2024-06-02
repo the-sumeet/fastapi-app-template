@@ -1,0 +1,54 @@
+@base=http://127.0.0.1:8000
+@auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdW1lZXRAZ21haWwuY29tIiwiZXhwIjoxNzEwMDM1MzkzfQ.EO1EBCAo9R-rXcnA12dHOCIkdd5UUafQ2SIyafbudTc
+
+### Log in
+
+POST {{base}}/api/v1/auth/login
+Authorization: dfef
+
+{
+  "email": "sumeet@gmail.com",
+  "password": "password"
+}
+
+### Create user
+
+POST {{base}}/api/v1/users/register
+Authorization: dfef
+
+{
+  "name": "string",
+  "email": "sumeet@gmail.com",
+  "password": "password"
+}
+
+### Get movies
+
+POST {{base}}/api/v1/movies
+Authorization: dfef
+
+### Get apps
+
+GET {{base}}/api/v1/apps
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdW1lZXRAZ21haWwuY29tIiwiZXhwIjoxNzA5OTM3NDgxfQ.8JSjtfYiSx7_iawxKPBaKORtQpqXjA6YnOtRQz_JXUM
+
+
+### Post APp
+
+POST {{base}}/api/v1/apps
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdW1lZXRAZ21haWwuY29tIiwiZXhwIjoxNzA5OTMzODQxfQ.Gx7S4L5O9-OMQJUAPCxC1V6rfjjs7eAHwN0fwNuBf_M
+
+{
+  "name": "First App",
+  "type": "outlook",
+  "config": {
+    "tenantId": "string",
+    "clientId": "string",
+    "secret": "string"
+  }
+}
+
+### Get App
+
+GET {{base}}/api/v1/apps/65eb8130d76cbe88150b15cb
+Authorization: {{auth}}
