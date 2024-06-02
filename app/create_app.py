@@ -1,10 +1,9 @@
 from fastapi import FastAPI
-
-from app.core.config import Settings
-from api.routes.api import router
-
-
 from kink import inject
+
+from api.routes.api import router
+from app.core.config import Settings
+
 
 @inject()
 def create_app(settings: Settings) -> FastAPI:

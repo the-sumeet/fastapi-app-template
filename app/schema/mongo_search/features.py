@@ -1,6 +1,6 @@
 import abc
 from dataclasses import dataclass
-from typing import List, Type, Any
+from typing import Any, List, Type
 
 from pydantic import BaseModel
 
@@ -35,6 +35,6 @@ class MatchField(SearchFeature):
             value = getattr(params, self.config.param)
 
         if isinstance(value, list):
-            return {self.config.field: {'$in': value}}
+            return {self.config.field: {"$in": value}}
 
         return {self.config.field: value}

@@ -1,4 +1,5 @@
 from typing import Annotated
+
 from pydantic import BeforeValidator
 
 # Represents an ObjectId field in the database.

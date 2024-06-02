@@ -1,9 +1,8 @@
-from fastapi import APIRouter
-from fastapi import Depends, Body
-from app.repository.user import UserRepository
-from app.schema.user import UserManyResponse, CreateUser, User
+from fastapi import APIRouter, Body, Depends, status
 from kink import di
-from fastapi import status
+
+from app.repository.user import UserRepository
+from app.schema.user import CreateUser, User, UserManyResponse
 from app.utils.auth import get_password_hash
 
 router = APIRouter()
@@ -21,7 +20,7 @@ async def get_users(
 
 @router.post("/register", response_model=User, status_code=status.HTTP_201_CREATED)
 async def create_user(
-        user: CreateUser = Body(),
-        repo: UserRepository = Depends(lambda: di[UserRepository]),
+    user: CreateUser = Body(),
+    repo: UserRepository = Depends(lambda: di[UserRepository]),
 ) -> User:
     return await repo.create_user(user)

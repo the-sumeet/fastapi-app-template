@@ -1,8 +1,8 @@
-from datetime import timedelta, datetime, timezone
-from jose import JWTError, jwt
-from passlib.context import CryptContext
+from datetime import datetime, timedelta, timezone
 
+from jose import JWTError, jwt
 from kink import di, inject
+from passlib.context import CryptContext
 
 from app.core.config import Settings
 
@@ -18,12 +18,16 @@ def get_password_hash(password):
 
 
 @inject()
-def create_access_token(data: dict, settings: Settings, expires_delta: timedelta | None = None):
+def create_access_token(
+    data: dict, settings: Settings, expires_delta: timedelta | None = None
+):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=15)
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    encoded_jwt = jwt.encode(
+        to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+    )
     return encoded_jwt

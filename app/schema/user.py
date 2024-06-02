@@ -1,9 +1,8 @@
-from typing import Optional, List
+from typing import List, Optional
 
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.schema.mongo import PyObjectId
-from pydantic import field_validator
 
 
 class UserBase(BaseModel):
@@ -39,11 +38,11 @@ class DbUser(User):
 class CreateUser(UserBase):
     password: str
 
-    @field_validator('password')
+    @field_validator("password")
     @classmethod
     def validate_password(cls, v: str) -> str:
         if v.strip() == "":
-            raise ValueError('password must not be empty')
+            raise ValueError("password must not be empty")
         return v
 
 

@@ -1,12 +1,10 @@
-from typing import Optional, List
+from typing import List, Optional
 
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.schema.mongo import PyObjectId
-from pydantic import field_validator
 
 
 class EmailPassword(BaseModel):
     email: str = Field(...)
     password: str = Field(...)
-
