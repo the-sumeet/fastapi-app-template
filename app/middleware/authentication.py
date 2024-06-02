@@ -2,8 +2,12 @@ import http
 
 from fastapi.responses import JSONResponse
 from kink import inject
-from starlette.authentication import (AuthCredentials, AuthenticationBackend,
-                                      AuthenticationError, BaseUser)
+from starlette.authentication import (
+    AuthCredentials,
+    AuthenticationBackend,
+    AuthenticationError,
+    BaseUser,
+)
 from starlette.requests import HTTPConnection
 
 from app.core.config import Settings

@@ -1,14 +1,14 @@
 from datetime import timedelta
 
-from fastapi import APIRouter, Body, Depends, status
+from fastapi import APIRouter, Body, Depends
 from kink import di
 
 from app.core.config import Settings
 from app.repository.user import UserRepository
 from app.schema.auth import EmailPassword
 from app.schema.token import Token
-from app.schema.user import CreateUser, DbUser, User, UserManyResponse
-from app.utils.auth import create_access_token, get_password_hash
+from app.schema.user import DbUser
+from app.utils.auth import create_access_token
 
 router = APIRouter()
 

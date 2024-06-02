@@ -1,4 +1,4 @@
-from fastapi import Depends, Request
+from fastapi import Request
 
 
 def current_user(request: Request):

@@ -1,7 +1,6 @@
 import abc
 from typing import Dict, Optional, Type
 
-from fastapi import Depends
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel
 from pymongo.collection import Collection
@@ -69,5 +68,5 @@ class WriteMixin:
                 return return_model.parse_obj(created_record)
 
             return self.model.parse_obj(created_record)
-        except Exception as e:
+        except Exception:
             return created_record

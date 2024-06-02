@@ -1,8 +1,6 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, List, Type
-
-from pydantic import BaseModel
+from typing import Any
 
 from app.schema.mongo_search.params import ParamsBase
 

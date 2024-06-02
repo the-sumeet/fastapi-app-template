@@ -5,11 +5,10 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.errors import DuplicateKeyError
 
 from app.core.config import Settings
-from app.repository.mongo import (AbstractMongoRepository, SearchMixin,
-                                  WriteMixin)
+from app.repository.mongo import AbstractMongoRepository, SearchMixin, WriteMixin
 from app.schema.auth import EmailPassword
 from app.schema.token import TokenData
-from app.schema.user import CreateUser, CreateUserDb, DbUser, User, UserBase
+from app.schema.user import CreateUser, CreateUserDb, DbUser, User
 from app.utils.auth import get_password_hash, verify_password
 
 
@@ -27,7 +26,7 @@ class UserRepository(AbstractMongoRepository, SearchMixin, WriteMixin):
         db_user = CreateUserDb(**new_user.dict(), hashed_password=hashed_password)
         try:
             res = await self.create(db_user)
-        except DuplicateKeyError as e:
+        except DuplicateKeyError:
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
                 detail="user with this email already exists.",

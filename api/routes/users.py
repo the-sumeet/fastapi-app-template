@@ -3,7 +3,6 @@ from kink import di
 
 from app.repository.user import UserRepository
 from app.schema.user import CreateUser, User, UserManyResponse
-from app.utils.auth import get_password_hash
 
 router = APIRouter()
 
